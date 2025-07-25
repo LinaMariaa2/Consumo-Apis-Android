@@ -1,18 +1,15 @@
 package com.lina.consumoapis.control;
 
-import android.app.ListActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.lina.consumoapis.Interfaces.RestAPiEmployees;
+import com.lina.consumoapis.Interfaces.RestApiEmployees;
 import com.lina.consumoapis.R;
+import com.lina.consumoapis.model.AdapterListEmployees;
 import com.lina.consumoapis.model.Employees;
 
 import java.util.ArrayList;
@@ -35,9 +32,17 @@ public class ListActivity1 extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_list1);
 
-        lvLitas = findViewById(R.id.lv);
-        getRequest(); // llama al método después de inicializar la vista
+        getSupportActionBar().hide();
+        referent();
+        getRequest();
+
     }
+    private void referent() {
+
+        lvLitas = findViewById(R.id.lv);
+
+    }
+
     private void getRequest(){
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -45,22 +50,22 @@ public class ListActivity1 extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        RestAPiEmployees restAPiEmployees = retrofit.create(RestAPiEmployees.class);
+        RestApiEmployees restAPiEmployees = retrofit.create(RestApiEmployees.class);
         Call<List<Employees>> call = restAPiEmployees.getEmployees();
         call.enqueue(new Callback<List<Employees>>() {
             @Override
             public void onResponse(Call<List<Employees>> call, Response<List<Employees>> response) {
                 if (!response.isSuccessful()) {
                     Log.e("error","no hay datos");
+                    return;
                 }
-
                 adapterListEmployees = new AdapterListEmployees(ListActivity1.this, (ArrayList<Employees>) response.body());
                 lvLitas.setAdapter(adapterListEmployees);
             }
 
             @Override
             public void onFailure(Call<List<Employees>> call, Throwable t) {
-
+                Log.e("Error", t.getMessage());
             }
         });
     }

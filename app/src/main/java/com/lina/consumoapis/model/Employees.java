@@ -58,6 +58,11 @@ public class Employees {
     public void setProfile_image(String profile_image) {
         this.profile_image = profile_image;
     }
+
+    @Override
+    public String toString() {
+        return id + " " + employee_name ;
+    }
 }
 
 
