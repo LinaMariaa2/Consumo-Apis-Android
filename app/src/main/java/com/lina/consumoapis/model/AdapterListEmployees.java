@@ -1,16 +1,15 @@
 package com.lina.consumoapis.model;
 
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-
 import com.lina.consumoapis.R;
-
 import java.util.ArrayList;
+
+// Un Adapter conecta los datos con las vistas gráficas en este caso los empleados los mostrara en el list view
 public class AdapterListEmployees extends BaseAdapter {
 
     Context context;
@@ -41,15 +40,14 @@ public class AdapterListEmployees extends BaseAdapter {
 
         TextView tvName, tvSalary;
 
+        //Esto infla el layout XML
         view = LayoutInflater.from(context).inflate(R.layout.item_list_employees, viewGroup, false);
 
-        /*init views*/
-
+        /*Busaca los elementos */
         tvName = view.findViewById(R.id.tvNameItem);
-       tvSalary = view.findViewById(R.id.tvSalaryItem);
+        tvSalary = view.findViewById(R.id.tvSalaryItem);
 
-        /* Fill views */
-
+        /* Fill views inserta los datos en la vista */
         tvName.setText(list.get(i).getEmployee_name());
         tvSalary.setText(String.valueOf(list.get(i).getEmployee_salary()));
 

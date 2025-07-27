@@ -1,13 +1,14 @@
 package com.lina.consumoapis.model;
 
 public class Employees {
-
+//Declaramos propiedades del empleado
     private int id;
     private String employee_name;
     private Double employee_salary;
     private int employee_age;
     private String profile_image;
 
+    // Este es el constructor vacío, necesario para convertir json a java
     public Employees(){}
 
     public Employees(int id, String employee_name, Double employee_salary, int employee_age, String profile_image){

@@ -4,7 +4,7 @@ public class PostEmployee {
     private String name;
     private double salary;
     private int age;
-
+// Utilizamos otro modelo para post porque vamos a enviar propiedades especificas
     public PostEmployee() {
 
     }
@@ -13,7 +13,6 @@ public class PostEmployee {
         this.name = name;
         this.salary = salary;
         this.age = age;
-
     }
 
     public String getName() {
